@@ -46,6 +46,7 @@ void SocketServer::processBroadcast()
             QNetworkInterface inter = QNetworkInterface::interfaceFromIndex(datagram.interfaceIndex());
             QList<QNetworkAddressEntry> addresses = inter.addressEntries();
             QHostAddress ip = addresses.at(0).ip();
+            printf("ip: %s\n", qPrintable(ip.toString()));
             QJsonObject json;
             json.insert(region, QStringLiteral("ws://") + ip.toString() + QStringLiteral(":") + QString::number(baseport));
             QJsonDocument json_doc(json);
